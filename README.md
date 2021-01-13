@@ -1,70 +1,39 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+This assignment is an employee directory with React.
 
-In the project directory, you can run:
 
-### `yarn start`
+It selects a table of random users from "https://randomuser.me/api/?results=50&nat=au", where it returns 50 people from Australian cities.  When the user loads the page, this table renders.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The user should be able to: 
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  * The table is able to be sorted alphabetically by first name, last name, or city. The reset the table button resets the table to the original order of the table. 
 
-### `yarn test`
+  * The table is able to be filtered by first name. When the first name is typed in the box, only the matching names will appear. When the box is cleared by back spacing, all the users reappear and the table resets. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+#Structure of the App
+  1. App.js renders the Navbar and the Table components. The Navbar is just a simple heading.
+  2. The Table component is where much of the code is. 
+      1. The state is set with two main important parts: Employees, and original employees as initially empty. 
+      2. When the component mounts in the "Component did mount" function, the API gets the 50 random users and sets the state in two arrays: originalEmployees, and employees. 
+      3. The sort has a switch statement to check which column is being sorted on, and uses an array.sort function to perform the operation. The resultant array is pushed to the employees in the state. 
+      4. when the reset button is clicked, employees is reset using the originalEmployees in the state. 
+      5. The filter button filters the employee array in the state using a string.startsWith function and returning that into the array if its true. 
+      6. Whatever is in the state.employees array is passed through to a Table Data component to render on this page. 
+      
+      Page with original table loaded
+      
+![](public/original.png)
 
-### `yarn build`
+Page with sorted data (sorted by first name)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![](public/sorted.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Page with filtered data (filtered by starting with the two letters "An")
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![](public/filtered.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+      
