@@ -21,14 +21,12 @@ class Table extends Component {
     }
 
     sort = (event) => {
-      let oldArray = [...this.state.employees]
       console.log("event",event.target.id)
       const x = event.target.id
-      var y=''
-      var sorted=''
+      var sorted=[...this.state.employees]
       switch(x) {
         case "1":
-          sorted = this.state.employees.sort(function(a, b) {
+          sorted.sort(function(a, b) {
             var nameA = a.name.first.toUpperCase(); // ignore upper and lowercase
             var nameB = b.name.first.toUpperCase(); // ignore upper and lowercase
             if (nameA < nameB) {
@@ -41,7 +39,7 @@ class Table extends Component {
           });
           break
         case "2": 
-        sorted = this.state.employees.sort(function(a, b) {
+        sorted.sort(function(a, b) {
           var nameA = a.name.last.toUpperCase(); // ignore upper and lowercase
           var nameB = b.name.last.toUpperCase(); // ignore upper and lowercase
           if (nameA < nameB) {
@@ -54,7 +52,7 @@ class Table extends Component {
         });
           break
         case "3":
-          sorted = this.state.employees.sort(function(a, b) {
+          sorted.sort(function(a, b) {
             var nameA = a.location.city.toUpperCase(); // ignore upper and lowercase
             var nameB = b.location.city.toUpperCase(); // ignore upper and lowercase
             if (nameA < nameB) {
@@ -72,11 +70,12 @@ class Table extends Component {
       }
 
       console.log("sorted", sorted)
-      this.setState({originalEmployees: oldArray})
       this.setState({employees: sorted})
+      console.log("state", this.state)
     }
 
     reset = () => {
+
       this.setState({employees: this.state.originalEmployees})
     }
     handleInputChange = event => {
@@ -84,10 +83,9 @@ class Table extends Component {
         this.setState({employees: this.state.originalEmployees})
         return
       }
-      // Getting the value and name of the input which triggered the change
-      const search = event.target.value;
+      
       console.log(event.target.value)
-      // Updating the input's state
+
       let filtered = this.state.employees.filter(function (e) {
         return e.name.first.startsWith(event.target.value);})
       this.setState({
